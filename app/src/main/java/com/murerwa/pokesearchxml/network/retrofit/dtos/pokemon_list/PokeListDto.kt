@@ -4,5 +4,5 @@ data class PokeListDto(
     val count: Int,
     val next: String,
     val previous: Any,
-    val result: List<PokemonDto>
+    val results: List<PokemonDto>
 )

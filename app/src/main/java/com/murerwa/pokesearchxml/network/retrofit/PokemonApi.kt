@@ -1,18 +1,19 @@
 package com.murerwa.pokesearchxml.network.retrofit
 
+import com.murerwa.pokesearchxml.network.resources.Constants
 import com.murerwa.pokesearchxml.network.retrofit.dtos.pokemon_details.PokemonDetailsDto
 import com.murerwa.pokesearchxml.network.retrofit.dtos.pokemon_list.PokeListDto
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface PokemonApi {
-    @GET("?offset={offset}&limit={limit}")
+    @GET("pokemon/")
     suspend fun getPokemonList(
-        @Path("offset") offset: Int,
-        @Path("limit") limit: Int
+        @Query("offset") offset: Int
     ): PokeListDto
 
-    @GET("{id}")
+    @GET("pokemon/{id}")
     suspend fun getPokemonDetails(
         @Path("id") id: Int
     ): PokemonDetailsDto
