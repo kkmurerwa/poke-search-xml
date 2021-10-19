@@ -1,4 +1,4 @@
-package com.murerwa.pokesearchxml.network
+package com.murerwa.pokesearchxml.network.paging
 
 import android.util.Log
 import androidx.paging.PagingSource
@@ -9,9 +9,6 @@ import com.murerwa.pokesearchxml.network.retrofit.PokemonApi
 import com.murerwa.pokesearchxml.network.retrofit.dtos.pokemon_list.PokemonDto
 import retrofit2.HttpException
 import java.io.IOException
-
-//class PokemonPagingSource {
-//}
 
 class PokemonPagingSource constructor(private val apiClient: PokemonApi) :
     PagingSource<Int, PokemonDto>() {
@@ -29,7 +26,7 @@ class PokemonPagingSource constructor(private val apiClient: PokemonApi) :
             LoadResult.Page(
                 data = networkResponse.results,
                 prevKey = if (page == STARTING_PAGING_INDEX) null else page - defaultPageLimit,
-                nextKey = if (page == networkResponse.count) null else page + defaultPageLimit
+                nextKey = if (page >= networkResponse.count) null else page + defaultPageLimit
             )
 
         } catch (e: HttpException) {

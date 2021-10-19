@@ -7,9 +7,7 @@ import com.murerwa.pokesearchxml.network.retrofit.dtos.pokemon_list.PokemonDto
 import kotlinx.coroutines.flow.Flow
 
 interface AppRepository {
-//    suspend fun getPokemonList(offset: Int, limit: Int): PokeListDto
     suspend fun getPokemonList(): Flow<PagingData<PokemonDto>>
-
 
     suspend fun getPokemonDetails(id: Int): PokemonDetailsDto
 }
